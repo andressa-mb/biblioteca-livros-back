@@ -1,5 +1,5 @@
 //Definindo o model 
-const mongoose = require('../config/mongo')
+const mongoose = require("mongoose")
 
 
 const LivroSchema = new mongoose.Schema({
@@ -13,4 +13,4 @@ const LivroSchema = new mongoose.Schema({
 //Collection
 const LivroModel = mongoose.model('livros', LivroSchema);
 
-module.exports = LivroModel;
+module.exports =  LivroModel ;

@@ -1,22 +1,25 @@
-const mongoose = require('mongoose');
-require("dotenv").config();
+/* eslint-disable no-undef */
+const mongoose = require("mongoose");
+require("dotenv/config");
 
-//Database connection URL
+// Database connection URL
 const dbUrl = process.env.DB_KEY;
 
-//Conect to the database
+// Connect to the database
 const connectToMongo = () => {
-    mongoose.connect(dbUrl)
+  mongoose.connect(dbUrl);
 
-    mongoose.connection.on("Connected", () => {
-        console.log("Connected to the database");
-    })
+  mongoose.connection.on("connected", () => {
+    console.log("Connected to the database");
+  });
 
-    mongoose.connection.on("error", (error) => {
-        console.log("Database connection error: ", error);
-    })
-    
-}
+  mongoose.connection.on("error", (err) => {
+    console.error("Database connection error:", err);
+  });
 
+  mongoose.connection.on("disconnected", () => {
+    console.log("Disconnected from the database");
+  });
+};
 
-module.exports = { connectToMongo };
+module.exports = connectToMongo;

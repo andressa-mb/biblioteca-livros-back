@@ -1,14 +1,14 @@
 const express = require('express');
 const LivroModel = require('./model/livro.model');
 const cors = require('cors');
-const { connectToMongo } = require('./config/mongo');
+const connectToMongo  = require('./config/mongo');
 const app = express();
 
 connectToMongo();
 
 app.use(express.json());
 
-app.use(cors())
+app.use(cors({}))
 
 app.get('/teste', async (req, res) => {
     return res.status(200).json({success: true});
@@ -48,7 +48,7 @@ app.post('/livros/cadastro', async (req, res) => {
 })
 
 app.get('/livros', async (req, res) => {
-    const livros = await LivroModel.find();
+    const livros = await LivroModel.find({});
     return res.status(200).json(livros);
 })
 
