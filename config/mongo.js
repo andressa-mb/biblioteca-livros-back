@@ -1,7 +1,22 @@
 const mongoose = require('mongoose');
+require("dotenv").config();
 
-mongoose.connect('mongodb://127.0.0.1:27017/dbLivro')
-.then(() => console.log("MongoDB Conectado!"))
-.catch((err) => console.log("Erro ao se conectar no MongoDB. ", err))
+//Database connection URL
+const dbUrl = process.env.DB_KEY;
 
-module.exports = mongoose
+//Conect to the database
+const connectToMongo = () => {
+    mongoose.connect(dbUrl)
+
+    mongoose.connection.on("Connected", () => {
+        console.log("Connected to the database");
+    })
+
+    mongoose.connection.on("error", (error) => {
+        console.log("Database connection error: ", error);
+    })
+    
+}
+
+
+module.exports = { connectToMongo };

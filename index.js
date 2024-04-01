@@ -1,7 +1,10 @@
 const express = require('express');
 const LivroModel = require('./model/livro.model');
 const cors = require('cors');
+const { connectToMongo } = require('./config/mongo');
 const app = express();
+
+connectToMongo();
 
 app.use(express.json());
 
