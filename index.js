@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.use(cors())
 
-app.post('/livros', async (req, res) => {
+app.post('/livros/cadastro', async (req, res) => {
     
     console.log(req)
     try{
@@ -62,7 +62,7 @@ app.get('/livros/:id', async (req, res) => {
     }
 })
 
-app.put('/livros/:id', async (req, res) => {
+app.put('/livros/edicao/:id', async (req, res) => {
     
     try {
         const livro = await LivroModel.updateOne({ id: req.params.id }, req.body);
