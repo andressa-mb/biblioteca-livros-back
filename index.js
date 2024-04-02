@@ -69,7 +69,7 @@ app.get('/livros/:id', async (req, res) => {
     }
 })
 
-app.put('/livros/edicao/:id', async (req, res) => {
+app.put('/livros/:id', async (req, res) => {
     
     try {
         const livro = await LivroModel.updateOne({ id: req.params.id }, req.body);
